@@ -27,7 +27,7 @@ Community Resolution Platform bridges the gap between citizens and municipal aut
 ## Quick Start (Docker needed)
 
 ```bash
-git clone https://github.com/Srivalli-Gedela/community-resolution-platform.git
+git clone https://github.com/harini-collab/community-resolution-platform.git
 cd community-resolution-platform
 
 cp .env.example .env
