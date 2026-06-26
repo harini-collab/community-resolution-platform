@@ -9,11 +9,17 @@ Community Resolution Platform bridges the gap between citizens and municipal aut
 ## Key Features
 
 |  **Public Issue Tracker** | Search by pincode, ward, or keyword — no login required |
+
 |  **Photo Upload + AI Suggestion** | Upload photo, get auto category suggestion before submitting |
+
 |  **6-Stage Workflow** | Reported → Assigned → Accepted → In Progress → Resolved → Verified → Closed |
+
 |  **Live Map** | Real-time map view of all reported issues |
+
 |  **Real-time Notifications** | Socket.io powered in-app alerts for officers and citizens |
+
 |  **Role-Based Access** | Citizen / Officer / Admin with protected routes |
+
 |  **India-First Location** | Address, area, ward, pincode, and landmark fields |
 
 ---
