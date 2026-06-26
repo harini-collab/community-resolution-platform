@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: community_reports
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d community_reports"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    # Bug fix: Use an explicit .env file, not .env.example, so secrets aren't
+    # committed. Fall back to .env.example if .env doesn't exist yet.
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.example
+        required: false
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/community_reports
+      # Bug fix: CLIENT_ORIGIN must include the port the browser actually uses.
+      # In dev the frontend Vite dev server runs on 5173, but the Docker-published
+      # port is also 5173 (see frontend service below), so this is correct.
+      # For production behind nginx, change to the public domain.
+      CLIENT_ORIGIN: http://localhost:5173
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - backend_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      # Bug fix: In Docker the browser makes requests to the HOST machine's ports,
+      # not to container-internal hostnames. The frontend JS runs in the user's
+      # browser, so VITE_API_URL must point to localhost (the Docker host),
+      # NOT to the "backend" Docker service hostname.
+      VITE_API_URL: http://localhost:5000/api
+      VITE_SOCKET_URL: http://localhost:5000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  backend_uploads:
