@@ -94,3 +94,10 @@ community-resolution-platform/
 
 ---
 
+## Team
+
+| Name | Contribution | GitHub |
+|------|-------------|--------|
+| Harini | Auth System, Issue Map, Notifications, API Routes, Database Schema, Docker | [@harini-collab](https://github.com/harini-collab) |
+| Srivalli | Dashboard, Officer Pages, Admin Panel, Backend Routes, Socket.io, Cloudinary | [@Srivalli-Gedela](https://github.com/Srivalli-Gedela) |
+
