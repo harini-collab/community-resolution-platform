@@ -2,13 +2,9 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
-// Bug fix: Added connection retry with backoff so the backend doesn't crash
-// on startup if Postgres container isn't fully ready yet (common in Docker Compose).
-// Also added explicit error logging so connection failures are visible.
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  // Keep connections healthy and don't hold them idle too long in Docker
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000
 });
@@ -22,7 +18,7 @@ export async function query(text, params) {
   return result;
 }
 
-// Called once on server startup to verify the DB is reachable
+
 export async function connectWithRetry(maxAttempts = 10, delayMs = 2000) {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
