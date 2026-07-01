@@ -9,9 +9,6 @@ dotenv.config();
 
 const port = process.env.PORT || 5000;
 
-// Bug fix: Wait for the database to be ready BEFORE starting the HTTP server.
-// Original code started the server immediately; any request that hit the DB
-// before Postgres was ready would throw an uncaught error and crash the process.
 async function start() {
   try {
     await connectWithRetry();
