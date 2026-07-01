@@ -3,8 +3,6 @@ export function notFound(req, res) {
 }
 
 export function errorHandler(error, req, res, next) {
-  // Bug fix: Log the full error server-side so startup and runtime issues are visible
-  // in Docker logs. Original silently swallowed all errors; impossible to debug.
   console.error(`[${req.method} ${req.originalUrl}]`, error.message || error);
 
   const status = error.status || 500;
