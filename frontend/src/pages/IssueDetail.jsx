@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api/client.js';
 import IssueTimeline from '../components/IssueTimeline.jsx';
+import IssueImage from '../components/IssueImage.jsx';
 import StatusBadge, { AvailabilityBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { dashboardPathForRole } from '../utils/routes.js';
@@ -95,11 +96,7 @@ export default function IssueDetail() {
       <Link className="btn-muted w-fit" to={backPath}><ArrowLeft size={16} /> Back</Link>
 
       <section className={`panel overflow-hidden ${isEmergency ? 'ring-2 ring-rose-400' : ''}`}>
-        {issue.image_url ? (
-          <img src={issue.image_url} alt="" className="h-72 w-full object-cover" />
-        ) : (
-          <div className="flex h-56 items-center justify-center bg-slate-100 text-slate-500"><ImageIcon size={28} /></div>
-        )}
+        <IssueImage src={issue.image_url} category={issue.category} className="h-72 w-full" />
         <div className="space-y-6 p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>

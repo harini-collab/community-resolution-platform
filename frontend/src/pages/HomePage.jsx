@@ -4,6 +4,7 @@ import {
   MapPinned, Menu, MessageSquareText, Phone, Shield, ShieldAlert, ShieldCheck,
   Sparkles, Target, Users, X
 } from 'lucide-react';
+import IssueImage from '../components/IssueImage.jsx';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client.js';
@@ -225,19 +226,7 @@ export default function HomePage() {
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {recentResolved.length ? recentResolved.map((item) => (
                 <article key={item.id} className="news-card">
-                  {(item.after_image_url || item.image_url || item.before_image_url) ? (
-                    <img
-                      src={item.after_image_url || item.image_url || item.before_image_url}
-                      alt=""
-                      className="h-48 w-full object-cover"
-                      loading="lazy"
-                      onError={(e) => { e.target.onerror = null; e.target.parentElement.style.display='none'; }}
-                    />
-                  ) : (
-                    <div className="h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                      <span className="text-slate-400 text-xs font-medium uppercase tracking-wide">No image</span>
-                    </div>
-                  )}
+                  <IssueImage src={item.after_image_url || item.image_url || item.before_image_url} category={item.category} className="h-48 w-full" />
                   <div className="p-6">
                     <p className="text-sm text-slate-500">{item.department_name || 'Department'} · {new Date(item.completion_date || item.updated_at).toLocaleDateString()}</p>
                     <h3 className="mt-2 text-xl font-extrabold">{item.title}</h3>

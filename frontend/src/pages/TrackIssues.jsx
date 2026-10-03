@@ -2,6 +2,7 @@ import { Clock3, MapPin, Search, Target } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client.js';
+import IssueImage from '../components/IssueImage.jsx';
 import StatusBadge from '../components/StatusBadge.jsx';
 
 const STATUS_OPTIONS = ['', 'Reported', 'Assigned', 'Accepted', 'In Progress', 'Resolved', 'Citizen Verified', 'Closed'];
@@ -84,11 +85,7 @@ export default function TrackIssues() {
                 onClick={() => openIssue(issue.id)}
               >
                 <div className="flex flex-col sm:flex-row">
-                  {issue.image_url && (
-                    <div className="h-36 w-full shrink-0 bg-slate-100 sm:h-auto sm:w-40">
-                      <img src={issue.image_url} alt="" className="h-full w-full object-cover" loading="lazy" onError={(e) => { e.target.onerror = null; e.target.closest('.img-wrapper')?.classList.add('hidden'); }} />
-                    </div>
-                  )}
+                  <IssueImage src={issue.image_url} category={issue.category} className="h-36 w-full shrink-0 sm:h-auto sm:w-40" />
                   <div className="flex-1 p-4">
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <h2 className="font-bold text-slate-900">{issue.title}</h2>
@@ -122,9 +119,7 @@ export default function TrackIssues() {
                   <h3 className="mt-1 text-lg font-bold">{selected.title}</h3>
                   <StatusBadge status={selected.status} />
                 </div>
-                {selected.image_url && (
-                  <img src={selected.image_url} alt="" className="w-full rounded-md object-cover" onError={(e) => { e.target.onerror = null; e.target.style.display='none'; }} />
-                )}
+                <IssueImage src={selected.image_url} category={selected.category} className="h-40 w-full rounded-md" />
                 <p className="text-sm text-slate-600">{selected.description}</p>
                 <dl className="space-y-2 text-sm">
                   <div><dt className="font-semibold text-slate-500">Location</dt><dd>{selected.address}, {selected.area}, {selected.pincode}</dd></div>

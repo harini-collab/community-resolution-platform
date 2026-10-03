@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client.js';
 import IssueMap from '../components/IssueMap.jsx';
+import IssueImage from '../components/IssueImage.jsx';
 import StatusBadge from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -114,11 +115,7 @@ export default function OfficerIssues() {
           const update = updates[issue.id] || {};
           return (
             <article key={issue.id} className="panel grid gap-4 p-4 lg:grid-cols-[180px_1fr_360px]">
-              {issue.image_url ? (
-                <img src={issue.image_url} alt="" className="h-40 w-full rounded-md object-cover lg:h-full" onError={(e)=>{e.target.onerror=null;e.target.style.display='none'}} />
-              ) : (
-                <div className="flex h-40 items-center justify-center rounded-md bg-slate-100 text-sm text-slate-500">No image</div>
-              )}
+              <IssueImage src={issue.image_url} category={issue.category} className="h-40 w-full rounded-md lg:h-full" />
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <Link className="font-semibold hover:text-civic" to={`/officer/issues/${issue.id}`}>{issue.title}</Link>
