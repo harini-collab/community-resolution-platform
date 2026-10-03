@@ -1,3 +1,4 @@
+
 # Community Resolution Platform
 
 > A full-stack civic technology platform for Indian municipalities — enabling citizens to **report, track, and verify** the resolution of local issues like potholes, garbage, and street lighting failures.
@@ -5,6 +6,26 @@
 ## Overview
 
 Community Resolution Platform bridges the gap between citizens and municipal authorities. Citizens report civic issues with photos and location, officers get assigned and update progress, and admins oversee the entire workflow — all in real time.
+
+## Screenshots
+
+### Home
+![Home page](screenshots/home.png)
+
+### Public Issue Tracker
+![Track issues](screenshots/track.png)
+
+### Live Map
+![Live map](screenshots/map.png)
+
+### Citizen Dashboard
+![Citizen dashboard](screenshots/citizen.png)
+
+### Officer Workspace
+![Officer workspace](screenshots/officer.png)
+
+### Admin Dashboard
+![Admin dashboard](screenshots/admin.png)
 
 ## Key Features
 
