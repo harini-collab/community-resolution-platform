@@ -123,7 +123,6 @@ community-resolution-platform/
 │   └── migrations/
 ├── docker-compose.yml
 ├── .env.example
-└── DEPLOY.md
 ```
 
 ##  Tech Stack
