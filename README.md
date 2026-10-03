@@ -30,7 +30,7 @@ Community Resolution Platform bridges the gap between citizens and municipal aut
 git clone https://github.com/harini-collab/community-resolution-platform.git
 cd community-resolution-platform
 
-cp .env.example .env
+copy .env.example .env
 
 docker compose down -v
 docker compose up --build -d
@@ -46,6 +46,26 @@ Open **http://localhost:5173**
 | `http://localhost:5000/health` | API health check |
 
 ---
+## Demo Login Accounts
+
+All demo accounts use the password: `password123`
+
+| Role | Email |
+|------|-------|
+| Admin (login at /admin-access) | admin.communityresolution@gmail.com |
+| Officer | rajesh.kumar.officer@gmail.com |
+| Officer | arun.singh.officer@gmail.com |
+| Citizen | priya.menon.citizen@gmail.com |
+| Citizen | ritesh.kumar.citizen@gmail.com |
+
+## Demo Images
+
+Demo photos are stored in `frontend/public/demo/`, so the app does not depend on any outside image site.
+If a photo is missing, the app shows a coloured category icon instead.
+To reset the demo data, run:
+
+    docker compose down -v
+    docker compose up --build
 
 ##  Manual Setup (Without Docker)
 
