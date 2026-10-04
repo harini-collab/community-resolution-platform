@@ -33,7 +33,7 @@ Community Resolution Platform bridges the gap between citizens and municipal aut
 
 |  **Photo Upload + AI Suggestion** | Upload photo, get auto category suggestion before submitting |
 
-|  **6-Stage Workflow** | Reported → Assigned → Accepted → In Progress → Resolved → Verified → Closed |
+|  **7-Stage Workflow** | Reported → Assigned → Accepted → In Progress → Resolved → Verified → Closed |
 
 |  **Live Map** | Real-time map view of all reported issues |
 
