@@ -572,7 +572,7 @@ router.patch('/:id/status', authenticate, authorize('officer', 'admin'), upload.
     }
 
     const updated = await query(
-      `UPDATE issues SET status = $1,
+      `UPDATE issues SET status = $1::issue_status,
          resolution_notes = COALESCE($2, resolution_notes),
          resolution_timestamp = COALESCE($3::timestamptz, resolution_timestamp),
          after_image_url = COALESCE($4, after_image_url),
